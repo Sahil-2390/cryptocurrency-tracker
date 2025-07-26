@@ -19,12 +19,47 @@
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+  background-image: url('https://plus.unsplash.com/premium_photo-1663931932687-c4c2366a5c61?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fGNyeXB0b3xlbnwwfHwwfHx8MA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .app-container h1 {
   margin-bottom: 20px;
-  color: var(--text-color);
+  color: #080808; /* Changed color to a green shade suitable for cryptocurrency theme */
   font-weight: 700;
   font-size: 2.5rem;
   text-align: center;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.crypto-icon, .tracker-icon {
+  display: flex;
+  align-items: center;
+}
+
+.crypto-icon {
+  position: relative;
+  top: 4px;
+}
+
+.crypto-icon svg, .tracker-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.tracker-icon {
+  margin-left: 12px;
 }
