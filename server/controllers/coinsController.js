@@ -11,33 +11,13 @@ const COINS_PARAMS = {
   price_change_percentage: '24h'
 };
 
-// GET /api/coins
 exports.getCoins = async (req, res) => {
   try {
-    const response = await axios.get(COINGECKO_API_URL, { params: COINS_PARAMS });
-    const coins = response.data.map(coin => ({
-      coinId: coin.id,
-      name: coin.name,
-      symbol: coin.symbol,
-      priceUsd: coin.current_price,
-      marketCap: coin.market_cap,
-      change24h: coin.price_change_percentage_24h,
-      lastUpdated: coin.last_updated
-    }));
-
-    // Update CurrentData collection 
-    for (const coin of coins) {
-      await CurrentData.findOneAndUpdate(
-        { coinId: coin.coinId },
-        coin,
-        { upsert: true, new: true }
-      );
-    }
-
+    const coins = await CurrentData.find({});
     res.json(coins);
   } catch (error) {
-    console.error('Error fetching coins:', error.message);
-    res.status(500).json({ error: 'Failed to fetch coins' });
+    console.error('Error fetching coins from DB:', error.message);
+    res.status(500).json({ error: 'Failed to fetch coins from database' });
   }
 };
 
