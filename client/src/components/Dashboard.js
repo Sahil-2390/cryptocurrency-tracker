@@ -29,12 +29,15 @@ function Dashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  // Filter coins by search term
+  // Filter coins by search term ignoring spaces
   const filteredCoins = useMemo(() => {
+    const normalizedSearchTerm = searchTerm.toLowerCase().replace(/\s+/g, '');
     return coins.filter(
-      (coin) =>
-        coin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        coin.symbol.toLowerCase().includes(searchTerm.toLowerCase())
+      (coin) => {
+        const normalizedName = coin.name.toLowerCase().replace(/\s+/g, '');
+        const normalizedSymbol = coin.symbol.toLowerCase().replace(/\s+/g, '');
+        return normalizedName.includes(normalizedSearchTerm) || normalizedSymbol.includes(normalizedSearchTerm);
+      }
     );
   }, [coins, searchTerm]);
 
